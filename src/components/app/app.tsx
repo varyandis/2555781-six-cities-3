@@ -1,8 +1,14 @@
 import MainScreen from '../../pages/main-screen/main-screen';
 
-function App() {
+type AppScreenProps = {
+  countPlaces: number;
+}
+
+function App(props : AppScreenProps) : JSX.Element {
   return (
-    <MainScreen/>
+    <MainScreen
+      countPlaces={props.countPlaces}
+    />
   );
 }
 
