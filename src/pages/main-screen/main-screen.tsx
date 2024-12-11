@@ -348,4 +348,4 @@ function MainScreen() : JSX.Element {
     </div>);
 }
 
-export {MainScreen};
+export default MainScreen;
