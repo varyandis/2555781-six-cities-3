@@ -6,11 +6,12 @@ import LoginScreen from '../../pages/login-screen/login-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import OfferScreen from '../../pages/offer-screen/offer-screen';
 
+
 type AppScreenProps = {
   countPlaces: number;
 }
 
-function App(props : AppScreenProps) : JSX.Element {
+function App(props : AppScreenProps) {
   return (
     <BrowserRouter>
       <Routes>
