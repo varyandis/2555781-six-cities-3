@@ -10,6 +10,7 @@ function NotFoundScreen() {
             {/* <p className="favorites__status-description">
           Save properties to narrow down search or plan your future trips.
             </p> */}
+            <a href="/">Вернуться на главную</a>
           </div>
         </section>
       </div>
