@@ -1,3 +1,5 @@
+import { Helmet } from 'react-helmet-async';
+
 function OfferNotLoggedScreen() {
   return (
     <div className="page">
@@ -32,6 +34,7 @@ function OfferNotLoggedScreen() {
         </div>
       </header>
       <main className="page__main page__main--offer">
+        <Helmet><title>6 cities: offer</title></Helmet>
         <section className="offer">
           <div className="offer__gallery-container container">
             <div className="offer__gallery">

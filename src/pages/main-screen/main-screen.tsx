@@ -1,4 +1,5 @@
 import Card from '../../components/card/card';
+import { Helmet } from 'react-helmet-async';
 
 type MainScreenProps = {
   offersCount: number;
@@ -46,6 +47,7 @@ function MainScreen(props : MainScreenProps) : JSX.Element {
         </div>
       </header>
       <main className="page__main page__main--index">
+        <Helmet><title>6 cities</title></Helmet>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">

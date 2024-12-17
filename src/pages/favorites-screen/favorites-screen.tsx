@@ -1,3 +1,5 @@
+import { Helmet } from 'react-helmet-async';
+
 function FavoritesScreen() : JSX.Element {
   return (
     <div className="page">
@@ -40,6 +42,7 @@ function FavoritesScreen() : JSX.Element {
         </div>
       </header>
       <main className="page__main page__main--favorites">
+        <Helmet><title>6 cities: favorites</title></Helmet>
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
