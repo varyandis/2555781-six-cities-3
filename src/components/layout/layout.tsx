@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 function Layout() {
   return (
     <>
-      <div className="page page--gray page--main">
+      <div className="page">
         <Header/>
       </div>
       <Outlet/>
