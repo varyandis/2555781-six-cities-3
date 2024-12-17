@@ -8,7 +8,7 @@ import OfferScreen from '../../pages/offer-screen/offer-screen';
 
 
 type AppScreenProps = {
-  countPlaces: number;
+  offersCount: number;
 }
 
 function App(props : AppScreenProps) {
@@ -17,7 +17,7 @@ function App(props : AppScreenProps) {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainScreen countPlaces={props.countPlaces}/>}
+          element={<MainScreen offersCount={props.offersCount}/>}
         />
         <Route
           path={AppRoute.Login}

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function NotFoundScreen() {
   return (
     <main className="page__main page__main--favorites page__main--favorites-empty">
@@ -10,7 +12,7 @@ function NotFoundScreen() {
             {/* <p className="favorites__status-description">
           Save properties to narrow down search or plan your future trips.
             </p> */}
-            <a href="/">Вернуться на главную</a>
+            <Link to="/">Вернуться на главную</Link>
           </div>
         </section>
       </div>

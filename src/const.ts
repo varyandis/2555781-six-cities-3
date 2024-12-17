@@ -1,5 +1,5 @@
 export const Settings = {
-  CountPlaces: 312
+  offersCount: 312
 };
 
 export enum AppRoute {
@@ -7,4 +7,10 @@ export enum AppRoute {
   Login = '/login',
   Favorites = '/favorites',
   Offer = '/offer/:id'
+}
+
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
 }

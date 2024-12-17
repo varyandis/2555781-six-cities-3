@@ -1,7 +1,7 @@
 import Card from '../../components/card/card';
 
 type MainScreenProps = {
-  countPlaces: number;
+  offersCount: number;
 }
 
 function MainScreen(props : MainScreenProps) : JSX.Element {
@@ -87,7 +87,7 @@ function MainScreen(props : MainScreenProps) : JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{props.countPlaces} places to stay in Amsterdam</b>
+              <b className="places__found">{props.offersCount} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
