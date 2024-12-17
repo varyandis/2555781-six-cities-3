@@ -1,14 +1,20 @@
 import Header from '../header/header';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
+import { getClassName } from '../../utils';
+import { AuthorizationStatus } from '../../const';
 
-function Layout() {
+type LayoutProps = {
+  authorizationStatus: AuthorizationStatus;
+}
+
+function Layout(props: LayoutProps) : JSX.Element {
+  const {authorizationStatus} = props;
+  const {pathname} = useLocation();
   return (
-    <>
-      <div className="page">
-        <Header/>
-      </div>
+    <div className={getClassName(pathname)}>
+      <Header authorizationStatus={authorizationStatus}/>
       <Outlet/>
-    </>
+    </div>
   );
 }
 

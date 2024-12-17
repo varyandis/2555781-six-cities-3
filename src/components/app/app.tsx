@@ -14,15 +14,17 @@ type AppScreenProps = {
 }
 
 function App(props : AppScreenProps) {
+  const authorizationStatus = AuthorizationStatus.Auth;
+
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoute.Main} element={<Layout />}>
+          <Route path={AppRoute.Main} element={<Layout authorizationStatus={authorizationStatus}/>}>
             <Route index element={<MainScreen offersCount={props.offersCount} />} />
             <Route path={AppRoute.Login} element={<LoginScreen />} />
             <Route path={AppRoute.Favorites} element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+              <PrivateRoute authorizationStatus={authorizationStatus}>
                 <FavoritesScreen />
               </PrivateRoute>
             }
