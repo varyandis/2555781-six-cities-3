@@ -8,6 +8,7 @@ type HeaderProps = {
 function Header(props: HeaderProps): JSX.Element {
   const { authorizationStatus } = props;
   const { pathname } = useLocation();
+  const {Login} = AppRoute;
 
   return (
     <header className="header">
@@ -24,7 +25,7 @@ function Header(props: HeaderProps): JSX.Element {
               />
             </a>
           </div>
-          {pathname !== AppRoute.Login && authorizationStatus === AuthorizationStatus.Auth && (
+          {pathname !== Login && authorizationStatus === AuthorizationStatus.Auth && (
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
@@ -47,7 +48,7 @@ function Header(props: HeaderProps): JSX.Element {
               </ul>
             </nav>
           )}
-          {authorizationStatus === AuthorizationStatus.NoAuth && pathname !== AppRoute.Login && (
+          {authorizationStatus === AuthorizationStatus.NoAuth && pathname !== Login && (
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
