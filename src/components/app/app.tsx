@@ -14,7 +14,7 @@ type AppScreenProps = {
 }
 
 function App(props : AppScreenProps) {
-  const authorizationStatus = AuthorizationStatus.Auth;
+  const authorizationStatus = AuthorizationStatus.NoAuth;
 
   return (
     <HelmetProvider>
