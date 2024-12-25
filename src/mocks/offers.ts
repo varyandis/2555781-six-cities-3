@@ -129,6 +129,7 @@ export const offers: TypeOffers[] = [
         'longitude': 2.351499,
         'zoom': 13
       }
+
     },
     'location': {
       'latitude': 48.87961000000001,
