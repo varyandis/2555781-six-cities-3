@@ -1,4 +1,4 @@
-export type TypeOffers = {
+export type TypeOffer = {
     id: string;
     title: string;
     type: string;

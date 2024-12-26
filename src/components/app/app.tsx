@@ -8,16 +8,13 @@ import OfferScreen from '../../pages/offer-screen/offer-screen';
 import Layout from '../layout/layout';
 import PrivateRoute from '../private-route/private-route';
 import {HelmetProvider} from 'react-helmet-async';
-import { TypeOffers } from '../../types/offers';
 
 type AppScreenProps = {
   offersCount: number;
-  offers: TypeOffers[];
 }
 
 function App(props : AppScreenProps) {
   const authorizationStatus = AuthorizationStatus.NoAuth;
-  const offers = props.offers;
 
   return (
     <HelmetProvider>

@@ -1,6 +1,6 @@
-import { TypeOffers } from '../types/offers';
+import { TypeOffer } from '../types/offers';
 
-export const offers: TypeOffers[] = [
+export const offers: TypeOffer[] = [
   {
     'id': 'a933e14b-1749-4c4a-bf86-87efb366f3d6',
     'title': 'Wood and stone place',
