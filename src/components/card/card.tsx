@@ -4,12 +4,13 @@ import capitalizeFirstLetter from '../../utils/utils';
 type CardProps = {
   offer: TypeOffer;
   onMouseOver: () => void;
+  onMouseLeave: () => void;
 }
 
-function Card({offer, onMouseOver} : CardProps) {
+function Card({offer, onMouseOver, onMouseLeave} : CardProps) {
 
   return (
-    <article className="cities__card place-card" onMouseOver={onMouseOver}>
+    <article className="cities__card place-card" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
       {offer.isPremium &&
       <div className="place-card__mark">
         <span>Premium</span>

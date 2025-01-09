@@ -14,10 +14,18 @@ function OffersList({ offers }: OffersListProps) {
     setCard(id);
   };
 
+  const handleMouseLeave = () => {
+    setCard(null);
+  };
+
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (
-        <Card key={offer.id} offer={offer} onMouseOver={() => handleMouseOver(offer.id)}/>
+        <Card key={offer.id}
+          offer={offer}
+          onMouseOver={() => handleMouseOver(offer.id)}
+          onMouseLeave={() => handleMouseLeave()}
+        />
       ))}
     </div>
   );
