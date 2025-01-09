@@ -5,35 +5,39 @@ type CardProps = {
   offer: TypeOffer;
   onMouseOver: () => void;
   onMouseLeave: () => void;
+  cardClassName: string;
 }
 
-function Card({offer, onMouseOver, onMouseLeave} : CardProps) {
+function Card({offer, onMouseOver, onMouseLeave, cardClassName} : CardProps) {
+  const isFavorites = cardClassName === 'favorites';
+  const imageWidth = isFavorites ? 150 : 260;
+  const imageHeight = isFavorites ? 110 : 200;
 
   return (
-    <article className="cities__card place-card" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
+    <article className={`${cardClassName}__card place-card`} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
       {offer.isPremium &&
       <div className="place-card__mark">
         <span>Premium</span>
       </div>}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${cardClassName}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img
             className="place-card__image"
             src={offer.previewImage}
-            width={260}
-            height={200}
+            width={imageWidth}
+            height={imageHeight}
             alt="Place image"
           />
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={`place-card__info ${isFavorites ? 'favorites__card-info' : ''}`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">€{offer.price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
           <button
-            className="place-card__bookmark-button button"
+            className={`place-card__bookmark-button button ${isFavorites ? 'place-card__bookmark-button--active' : ''}`}
             type="button"
           >
             <svg
@@ -43,7 +47,7 @@ function Card({offer, onMouseOver, onMouseLeave} : CardProps) {
             >
               <use xlinkHref="#icon-bookmark" />
             </svg>
-            <span className="visually-hidden">To bookmarks</span>
+            <span className="visually-hidden">`{isFavorites ? 'In' : 'To'}` bookmarks</span>
           </button>
         </div>
         <div className="place-card__rating rating">

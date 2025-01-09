@@ -27,7 +27,7 @@ function App(props : AppScreenProps) {
             <Route path={AppRoute.Login} element={<LoginScreen />} />
             <Route path={AppRoute.Favorites} element={
               <PrivateRoute authorizationStatus={authorizationStatus}>
-                <FavoritesScreen />
+                <FavoritesScreen offers={offers}/>
               </PrivateRoute>
             }
             />

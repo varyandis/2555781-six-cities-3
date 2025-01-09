@@ -757,7 +757,7 @@ export const offers: TypeOffer[] = [
       'longitude': 6.9509739999999995,
       'zoom': 16
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': true,
     'rating': 1.8
   },
@@ -780,7 +780,7 @@ export const offers: TypeOffer[] = [
       'longitude': 6.944974,
       'zoom': 16
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': true,
     'rating': 3
   },
@@ -1148,7 +1148,7 @@ export const offers: TypeOffer[] = [
       'longitude': 4.339697,
       'zoom': 16
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': false,
     'rating': 2.5
   },
@@ -1447,7 +1447,7 @@ export const offers: TypeOffer[] = [
       'longitude': 4.9099759999999995,
       'zoom': 16
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': false,
     'rating': 4
   },
@@ -1562,7 +1562,7 @@ export const offers: TypeOffer[] = [
       'longitude': 4.894976,
       'zoom': 16
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': false,
     'rating': 3
   },
@@ -2068,7 +2068,7 @@ export const offers: TypeOffer[] = [
       'longitude': 10.009654000000001,
       'zoom': 16
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': true,
     'rating': 4.7
   },
@@ -2459,7 +2459,7 @@ export const offers: TypeOffer[] = [
       'longitude': 6.782314,
       'zoom': 16
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': false,
     'rating': 5
   },
@@ -2643,7 +2643,7 @@ export const offers: TypeOffer[] = [
       'longitude': 6.763314,
       'zoom': 16
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': true,
     'rating': 1.1
   },
