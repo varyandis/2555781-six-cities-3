@@ -1,37 +1,15 @@
 import { TypeOffer } from '../../types/offers';
-
-// const offer: TypeOffer = {
-//   'id': 'a933e14b-1749-4c4a-bf86-87efb366f3d6',
-//   'title': 'Wood and stone place',
-//   'type': 'apartment',
-//   'price': 398,
-//   'previewImage': 'https://15.design.htmlacademy.pro/static/hotel/12.jpg',
-//   'city': {
-//     'name': 'Paris',
-//     'location': {
-//       'latitude': 48.85661,
-//       'longitude': 2.351499,
-//       'zoom': 13
-//     }
-//   },
-//   'location': {
-//     'latitude': 48.868610000000004,
-//     'longitude': 2.342499,
-//     'zoom': 16
-//   },
-//   'isFavorite': false,
-//   'isPremium': false,
-//   'rating': 1.2
-// };
+import capitalizeFirstLetter from '../../utils/utils';
 
 type CardProps = {
   offer: TypeOffer;
+  onMouseOver: () => void;
 }
 
-function Card({offer} : CardProps) {
-// function Card() {
+function Card({offer, onMouseOver} : CardProps) {
+
   return (
-    <article className="cities__card place-card">
+    <article className="cities__card place-card" onMouseOver={onMouseOver}>
       {offer.isPremium &&
       <div className="place-card__mark">
         <span>Premium</span>
@@ -77,7 +55,7 @@ function Card({offer} : CardProps) {
           <a href="#">{offer.title}
           </a>
         </h2>
-        <p className="place-card__type">{offer.type}</p>
+        <p className="place-card__type">{capitalizeFirstLetter(offer.type)}</p>
       </div>
     </article>
   );
