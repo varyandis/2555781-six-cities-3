@@ -14,7 +14,7 @@ export type TypeHandleForm = {
 }
 
 function ReviewsForm() {
-  const [rating, setRating] = useState(null);
+  const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
 
   const handleRatingChange = (event: TypeHandleForm) => {
@@ -71,7 +71,7 @@ function ReviewsForm() {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled
+          disabled={review.length < 50 && rating > 0}
         >
     Submit
         </button>
