@@ -1,4 +1,5 @@
 import { TypeOffer } from '../../types/offers';
+import { Link } from 'react-router-dom';
 import capitalizeFirstLetter from '../../utils/utils';
 
 type CardProps = {
@@ -20,7 +21,7 @@ function Card({offer, onMouseOver, onMouseLeave, cardClassName} : CardProps) {
         <span>Premium</span>
       </div>}
       <div className={`${cardClassName}__image-wrapper place-card__image-wrapper`}>
-        <a href="#">
+        <Link to={`/Offer/${offer.id}`}>
           <img
             className="place-card__image"
             src={offer.previewImage}
@@ -28,7 +29,7 @@ function Card({offer, onMouseOver, onMouseLeave, cardClassName} : CardProps) {
             height={imageHeight}
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
       <div className={`place-card__info ${isFavorites ? 'favorites__card-info' : ''}`}>
         <div className="place-card__price-wrapper">
