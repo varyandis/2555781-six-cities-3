@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { Link } from 'react-router-dom';
 
 type HeaderProps = {
   authorizationStatus: AuthorizationStatus;
@@ -15,7 +16,7 @@ function Header(props: HeaderProps): JSX.Element {
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <a className="header__logo-link header__logo-link--active">
+            <Link to='/' className="header__logo-link header__logo-link--active">
               <img
                 className="header__logo"
                 src="img/logo.svg"
@@ -23,7 +24,7 @@ function Header(props: HeaderProps): JSX.Element {
                 width={81}
                 height={41}
               />
-            </a>
+            </Link>
           </div>
           {pathname !== Login && authorizationStatus === AuthorizationStatus.Auth && (
             <nav className="header__nav">

@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import ReviewsForm from '../../components/reviews-form/reviews-form';
 
 function OfferScreen() {
   return (
@@ -162,6 +163,19 @@ function OfferScreen() {
                     </p>
                     <time className="reviews__time" dateTime="2019-04-24">
                     April 2019
+                      </time>
+                    </div>
+                  </li>
+                </ul>
+                <ReviewsForm/>
+              </section>
+            </div>
+          </div>
+          <section className="offer__map map" />
+        </section>
+        <div className="container">
+          <section className="near-places places">
+            <h2 className="near-places__title">
                     </time>
                   </div>
                 </li>
