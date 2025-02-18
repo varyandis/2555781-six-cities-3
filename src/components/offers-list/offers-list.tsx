@@ -1,23 +1,15 @@
 import Card from '../card/card';
 import { TypeOffer } from '../../types/offers';
-import { useState } from 'react';
 
 type OffersListProps = {
   offers: TypeOffer[];
   cardClassName: string;
+  onMouseOver: (id: string) => void;
+  onMouseLeave: () => void;
 }
 
-function OffersList({ offers, cardClassName }: OffersListProps) {
+function OffersList({ offers, cardClassName, onMouseOver, onMouseLeave }: OffersListProps) {
   const isFavorites = cardClassName === 'favorites';
-  const [card, setCard] = useState<string | null>(null);
-
-  const handleMouseOver = (id: string) => {
-    setCard(id);
-  };
-
-  const handleMouseLeave = () => {
-    setCard(null);
-  };
 
   return (
     <div className={`${isFavorites ? 'favorites__places' : 'cities__places-list places__list tabs__content'}`}>
@@ -25,8 +17,8 @@ function OffersList({ offers, cardClassName }: OffersListProps) {
         <Card key={offer.id}
           offer={offer}
           cardClassName={cardClassName}
-          onMouseOver={() => handleMouseOver(offer.id)}
-          onMouseLeave={() => handleMouseLeave()}
+          onMouseOver={onMouseOver}
+          onMouseLeave={onMouseLeave}
         />
       ))}
     </div>

@@ -2,14 +2,15 @@ import { TypeOffer } from '../../types/offers';
 import { Link } from 'react-router-dom';
 import capitalizeFirstLetter from '../../utils/utils';
 
+
 type CardProps = {
   offer: TypeOffer;
-  onMouseOver: () => void;
+  onMouseOver: (id: string) => void;
   onMouseLeave: () => void;
   cardClassName: string;
 };
 
-function Card({ offer, onMouseOver, onMouseLeave, cardClassName }: CardProps) {
+function Card({ offer, cardClassName, onMouseOver, onMouseLeave }: CardProps) {
   const isFavorites = cardClassName === 'favorites';
   const imageWidth = isFavorites ? 150 : 260;
   const imageHeight = isFavorites ? 110 : 200;
@@ -17,8 +18,8 @@ function Card({ offer, onMouseOver, onMouseLeave, cardClassName }: CardProps) {
   return (
     <article
       className={`${cardClassName}__card place-card`}
-      onMouseOver={onMouseOver}
-      onMouseLeave={onMouseLeave}
+      onMouseOver={() => onMouseOver(offer.id)}
+      onMouseLeave={() => onMouseLeave()}
     >
       {offer.isPremium && (
         <div className="place-card__mark">

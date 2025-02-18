@@ -1,16 +1,29 @@
 import { Helmet } from 'react-helmet-async';
 import { TypeOffer } from '../../types/offers';
 import OffersList from '../../components/offers-list/offers-list';
+import { useState } from 'react';
 
 type MainScreenProps = {
   offersCount: number;
   offers: TypeOffer[];
-}
+};
 
-function MainScreen({offersCount, offers} : MainScreenProps) : JSX.Element {
+function MainScreen({ offersCount, offers }: MainScreenProps): JSX.Element {
+  const [card, setCard] = useState('');
+
+  const handleMouseOver = (id: string) => {
+    setCard(id);
+  };
+
+  const handleMouseLeave = () => {
+    setCard('');
+  };
+
   return (
     <main className="page__main page__main--index">
-      <Helmet><title>6 cities</title></Helmet>
+      <Helmet>
+        <title>6 cities</title>
+      </Helmet>
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <section className="locations container">
@@ -52,7 +65,9 @@ function MainScreen({offersCount, offers} : MainScreenProps) : JSX.Element {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{offersCount} places to stay in Amsterdam</b>
+            <b className="places__found">
+              {offersCount} places to stay in Amsterdam
+            </b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex={0}>
@@ -79,7 +94,12 @@ function MainScreen({offersCount, offers} : MainScreenProps) : JSX.Element {
                 </li>
               </ul>
             </form>
-            <OffersList offers={offers} cardClassName="cities"/>
+            <OffersList
+              offers={offers}
+              cardClassName="cities"
+              onMouseOver={handleMouseOver}
+              onMouseLeave={handleMouseLeave}
+            />
           </section>
           <div className="cities__right-section">
             <section className="cities__map map" />

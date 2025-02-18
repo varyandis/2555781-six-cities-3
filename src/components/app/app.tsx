@@ -16,7 +16,7 @@ type AppScreenProps = {
   offers: TypeOffer[];
 }
 
-function App(props : AppScreenProps) {
+function App({offersCount, offers} : AppScreenProps) {
   const authorizationStatus = AuthorizationStatus.Auth;
 
   return (
@@ -24,11 +24,11 @@ function App(props : AppScreenProps) {
       <BrowserRouter>
         <Routes>
           <Route path={AppRoute.Main} element={<Layout authorizationStatus={authorizationStatus}/>}>
-            <Route index element={<MainScreen offersCount={props.offersCount} offers={props.offers}/>} />
+            <Route index element={<MainScreen offersCount={offersCount} offers={offers}/>} />
             <Route path={AppRoute.Login} element={<LoginScreen />} />
             <Route path={AppRoute.Favorites} element={
               <PrivateRoute authorizationStatus={authorizationStatus}>
-                <FavoritesScreen offers={props.offers}/>
+                <FavoritesScreen offers={offers}/>
               </PrivateRoute>
             }
             />
