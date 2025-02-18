@@ -7,20 +7,27 @@ type CardProps = {
   onMouseOver: () => void;
   onMouseLeave: () => void;
   cardClassName: string;
-}
+};
 
-function Card({offer, onMouseOver, onMouseLeave, cardClassName} : CardProps) {
+function Card({ offer, onMouseOver, onMouseLeave, cardClassName }: CardProps) {
   const isFavorites = cardClassName === 'favorites';
   const imageWidth = isFavorites ? 150 : 260;
   const imageHeight = isFavorites ? 110 : 200;
 
   return (
-    <article className={`${cardClassName}__card place-card`} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
-      {offer.isPremium &&
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>}
-      <div className={`${cardClassName}__image-wrapper place-card__image-wrapper`}>
+    <article
+      className={`${cardClassName}__card place-card`}
+      onMouseOver={onMouseOver}
+      onMouseLeave={onMouseLeave}
+    >
+      {offer.isPremium && (
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
+      )}
+      <div
+        className={`${cardClassName}__image-wrapper place-card__image-wrapper`}
+      >
         <Link to={`/Offer/${offer.id}`}>
           <img
             className="place-card__image"
@@ -31,24 +38,28 @@ function Card({offer, onMouseOver, onMouseLeave, cardClassName} : CardProps) {
           />
         </Link>
       </div>
-      <div className={`place-card__info ${isFavorites ? 'favorites__card-info' : ''}`}>
+      <div
+        className={`place-card__info ${
+          isFavorites ? 'favorites__card-info' : ''
+        }`}
+      >
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">€{offer.price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
           <button
-            className={`place-card__bookmark-button button ${isFavorites ? 'place-card__bookmark-button--active' : ''}`}
+            className={`place-card__bookmark-button button ${
+              isFavorites ? 'place-card__bookmark-button--active' : ''
+            }`}
             type="button"
           >
-            <svg
-              className="place-card__bookmark-icon"
-              width={18}
-              height={19}
-            >
+            <svg className="place-card__bookmark-icon" width={18} height={19}>
               <use xlinkHref="#icon-bookmark" />
             </svg>
-            <span className="visually-hidden">`{isFavorites ? 'In' : 'To'}` bookmarks</span>
+            <span className="visually-hidden">
+              `{isFavorites ? 'In' : 'To'}` bookmarks
+            </span>
           </button>
         </div>
         <div className="place-card__rating rating">
@@ -58,8 +69,7 @@ function Card({offer, onMouseOver, onMouseLeave, cardClassName} : CardProps) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{offer.title}
-          </a>
+          <a href="#">{offer.title}</a>
         </h2>
         <p className="place-card__type">{capitalizeFirstLetter(offer.type)}</p>
       </div>
