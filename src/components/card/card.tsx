@@ -5,8 +5,8 @@ import capitalizeFirstLetter from '../../utils/utils';
 
 type CardProps = {
   offer: TypeOffer;
-  onMouseOver: (id: string) => void;
-  onMouseLeave: () => void;
+  onMouseOver?: (id: string) => void;
+  onMouseLeave?: () => void;
   cardClassName: string;
 };
 
@@ -18,8 +18,8 @@ function Card({ offer, cardClassName, onMouseOver, onMouseLeave }: CardProps) {
   return (
     <article
       className={`${cardClassName}__card place-card`}
-      onMouseOver={() => onMouseOver(offer.id)}
-      onMouseLeave={() => onMouseLeave()}
+      onMouseOver={onMouseOver ? () => onMouseOver(offer.id) : undefined}
+      onMouseLeave={onMouseLeave ? () => onMouseLeave() : undefined}
     >
       {offer.isPremium && (
         <div className="place-card__mark">
@@ -29,7 +29,7 @@ function Card({ offer, cardClassName, onMouseOver, onMouseLeave }: CardProps) {
       <div
         className={`${cardClassName}__image-wrapper place-card__image-wrapper`}
       >
-        <Link to={`/Offer/${offer.id}`}>
+        <Link to={`/offer/${offer.id}`}>
           <img
             className="place-card__image"
             src={offer.previewImage}
@@ -70,7 +70,7 @@ function Card({ offer, cardClassName, onMouseOver, onMouseLeave }: CardProps) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{offer.title}</a>
+          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{capitalizeFirstLetter(offer.type)}</p>
       </div>

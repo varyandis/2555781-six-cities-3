@@ -4,8 +4,8 @@ import { TypeOffer } from '../../types/offers';
 type OffersListProps = {
   offers: TypeOffer[];
   cardClassName: string;
-  onMouseOver: (id: string) => void;
-  onMouseLeave: () => void;
+  onMouseOver?: (id: string) => void;
+  onMouseLeave?: () => void;
 }
 
 function OffersList({ offers, cardClassName, onMouseOver, onMouseLeave }: OffersListProps) {

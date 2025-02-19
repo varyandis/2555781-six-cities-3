@@ -3,7 +3,7 @@ import { AppRoute } from './const';
 const getClassName = (pathname: string) => {
   let className = 'page';
 
-  switch(pathname) {
+  switch(pathname.toLowerCase()) {
     case AppRoute.Offer:
     case AppRoute.Favorites:
       className = 'page';
