@@ -2,11 +2,21 @@ import { Helmet } from 'react-helmet-async';
 import { TypeOffer } from '../../types/offers';
 import OffersList from '../../components/offers-list/offers-list';
 import { useState } from 'react';
+import Map from '../../components/map/map';
 
 type MainScreenProps = {
   offersCount: number;
   offers: TypeOffer[];
 };
+
+const city = {
+  'name': 'Amsterdam',
+  'location': {
+    'latitude': 52.37454,
+    'longitude': 4.897976,
+    'zoom': 13
+  }
+}
 
 function MainScreen({ offersCount, offers }: MainScreenProps): JSX.Element {
   const [card, setCard] = useState('');
@@ -102,7 +112,7 @@ function MainScreen({ offersCount, offers }: MainScreenProps): JSX.Element {
             />
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map" />
+            <Map card={card} offers={offers} city={city}/>
           </div>
         </div>
       </div>
