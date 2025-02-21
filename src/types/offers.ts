@@ -21,3 +21,4 @@ export type TypeLocation = {
   longitude: number;
   zoom: number;
 }
+

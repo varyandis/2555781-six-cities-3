@@ -3,7 +3,7 @@ import { TypeOffer } from '../../types/offers';
 
 type OffersListProps = {
   offers: TypeOffer[];
-  cardClassName: string;
+  cardClassName?: string;
   onMouseOver?: (id: string) => void;
   onMouseLeave?: () => void;
 }

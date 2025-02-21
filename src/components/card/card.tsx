@@ -1,13 +1,13 @@
 import { TypeOffer } from '../../types/offers';
 import { Link } from 'react-router-dom';
-import capitalizeFirstLetter from '../../utils/utils';
+import { capitalizeFirstLetter } from '../../utils/utils';
 
 
 type CardProps = {
   offer: TypeOffer;
   onMouseOver?: (id: string) => void;
   onMouseLeave?: () => void;
-  cardClassName: string;
+  cardClassName?: string;
 };
 
 function Card({ offer, cardClassName, onMouseOver, onMouseLeave }: CardProps) {
