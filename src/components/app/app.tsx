@@ -14,9 +14,10 @@ import { TypeOffer } from '../../types/offers';
 type AppScreenProps = {
   offersCount: number;
   offers: TypeOffer[];
+  offersNearby: TypeOffer[];
 }
 
-function App({offersCount, offers} : AppScreenProps) {
+function App({offersCount, offers, offersNearby} : AppScreenProps) {
   const authorizationStatus = AuthorizationStatus.Auth;
 
   return (
@@ -32,7 +33,7 @@ function App({offersCount, offers} : AppScreenProps) {
               </PrivateRoute>
             }
             />
-            <Route path={AppRoute.Offer} element={<OfferScreen />} />
+            <Route path={AppRoute.Offer} element={<OfferScreen offersNearby={offersNearby} offers={offers}/>} />
           </Route>
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>

@@ -13,6 +13,7 @@ type MapProps = {
   offers: TypeOffer[];
   selectedCard?: TypeOffer | undefined;
   city: TypeCity;
+  className: string;
 }
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -26,9 +27,11 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({ selectedCard, offers, city }: MapProps) {
+function Map({ selectedCard, offers, city, className }: MapProps) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
+
+  const classNameMap = (className === 'offer') ? 'offer' : 'cities';
 
   useEffect(() => {
     if (map) {
@@ -56,7 +59,7 @@ function Map({ selectedCard, offers, city }: MapProps) {
 
 
   return (
-    <section className="cities__map map" ref={mapRef}></section>
+    <section className={`${classNameMap}__map map`} ref={mapRef}></section>
   );
 }
 

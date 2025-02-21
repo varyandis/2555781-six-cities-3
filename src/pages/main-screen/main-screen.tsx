@@ -112,7 +112,7 @@ function MainScreen({ offersCount, offers }: MainScreenProps): JSX.Element {
             />
           </section>
           <div className="cities__right-section">
-            <Map selectedCard={selectedCard} offers={offers} city={city} />
+            <Map selectedCard={selectedCard} offers={offers} city={city} className='cities'/>
           </div>
         </div>
       </div>

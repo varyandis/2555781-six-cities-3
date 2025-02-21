@@ -7,7 +7,7 @@ type CardProps = {
   offer: TypeOffer;
   onMouseOver?: (id: string) => void;
   onMouseLeave?: () => void;
-  cardClassName: string;
+  cardClassName?: string;
 };
 
 function Card({ offer, cardClassName, onMouseOver, onMouseLeave }: CardProps) {
