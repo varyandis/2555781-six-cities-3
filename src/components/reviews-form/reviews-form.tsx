@@ -1,4 +1,4 @@
-import { ReactEventHandler, useState } from 'react';
+import { useState } from 'react';
 import React from 'react';
 
 const ratingReview = [
@@ -9,19 +9,15 @@ const ratingReview = [
   {value: 1, title: 'terribly'},
 ];
 
-export type TypeHandleForm = {
-  event: ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-}
-
 function ReviewsForm() {
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
 
-  const handleRatingChange = (event: TypeHandleForm) => {
-    setRating(event.target.value);
+  const handleRatingChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRating(Number(event.target.value));
   };
 
-  const handleReviewChange = (event: TypeHandleForm) => {
+  const handleReviewChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReview(event.target.value);
   };
 

@@ -1,16 +1,39 @@
 import { Helmet } from 'react-helmet-async';
 import { TypeOffer } from '../../types/offers';
 import OffersList from '../../components/offers-list/offers-list';
+import { useState } from 'react';
+import Map from '../../components/map/map';
 
 type MainScreenProps = {
   offersCount: number;
   offers: TypeOffer[];
-}
+};
 
-function MainScreen({offersCount, offers} : MainScreenProps) : JSX.Element {
+const city = {
+  'name': 'Amsterdam',
+  'location': {
+    'latitude': 52.37454,
+    'longitude': 4.897976,
+    'zoom': 13
+  }
+};
+
+function MainScreen({ offersCount, offers }: MainScreenProps): JSX.Element {
+  const [selectedCard, setSelectedCard] = useState<TypeOffer | undefined>(undefined);
+
+  const handleMouseOver = (id: string) => {
+    setSelectedCard(offers.find((offer) => offer.id === id));
+  };
+
+  const handleMouseLeave = () => {
+    setSelectedCard(undefined);
+  };
+
   return (
     <main className="page__main page__main--index">
-      <Helmet><title>6 cities</title></Helmet>
+      <Helmet>
+        <title>6 cities</title>
+      </Helmet>
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <section className="locations container">
@@ -52,7 +75,9 @@ function MainScreen({offersCount, offers} : MainScreenProps) : JSX.Element {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{offersCount} places to stay in Amsterdam</b>
+            <b className="places__found">
+              {offersCount} places to stay in Amsterdam
+            </b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex={0}>
@@ -79,10 +104,15 @@ function MainScreen({offersCount, offers} : MainScreenProps) : JSX.Element {
                 </li>
               </ul>
             </form>
-            <OffersList offers={offers} cardClassName="cities"/>
+            <OffersList
+              offers={offers}
+              cardClassName="cities"
+              onMouseOver={handleMouseOver}
+              onMouseLeave={handleMouseLeave}
+            />
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map" />
+            <Map selectedCard={selectedCard} offers={offers} city={city} />
           </div>
         </div>
       </div>

@@ -8,14 +8,15 @@ import OfferScreen from '../../pages/offer-screen/offer-screen';
 import Layout from '../layout/layout';
 import PrivateRoute from '../private-route/private-route';
 import {HelmetProvider} from 'react-helmet-async';
-// import { TypeOffer } from '../../types/offers';
-import { offers } from '../../mocks/offers';
+import { TypeOffer } from '../../types/offers';
+// import { offers } from '../../mocks/offers';
 
 type AppScreenProps = {
   offersCount: number;
+  offers: TypeOffer[];
 }
 
-function App(props : AppScreenProps) {
+function App({offersCount, offers} : AppScreenProps) {
   const authorizationStatus = AuthorizationStatus.Auth;
 
   return (
@@ -23,7 +24,7 @@ function App(props : AppScreenProps) {
       <BrowserRouter>
         <Routes>
           <Route path={AppRoute.Main} element={<Layout authorizationStatus={authorizationStatus}/>}>
-            <Route index element={<MainScreen offersCount={props.offersCount} offers={offers}/>} />
+            <Route index element={<MainScreen offersCount={offersCount} offers={offers}/>} />
             <Route path={AppRoute.Login} element={<LoginScreen />} />
             <Route path={AppRoute.Favorites} element={
               <PrivateRoute authorizationStatus={authorizationStatus}>
