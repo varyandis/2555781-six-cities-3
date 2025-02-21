@@ -16,17 +16,17 @@ const city = {
     'longitude': 4.897976,
     'zoom': 13
   }
-}
+};
 
 function MainScreen({ offersCount, offers }: MainScreenProps): JSX.Element {
-  const [card, setCard] = useState('');
+  const [selectedCard, setSelectedCard] = useState<TypeOffer | undefined>(undefined);
 
   const handleMouseOver = (id: string) => {
-    setCard(id);
+    setSelectedCard(offers.find((offer) => offer.id === id));
   };
 
   const handleMouseLeave = () => {
-    setCard('');
+    setSelectedCard(undefined);
   };
 
   return (
@@ -112,7 +112,7 @@ function MainScreen({ offersCount, offers }: MainScreenProps): JSX.Element {
             />
           </section>
           <div className="cities__right-section">
-            <Map card={card} offers={offers} city={city}/>
+            <Map selectedCard={selectedCard} offers={offers} city={city} />
           </div>
         </div>
       </div>
