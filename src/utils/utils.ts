@@ -1,3 +1,6 @@
+
+import { TypeOffer } from '../types/offers';
+
 const capitalizeFirstLetter = (word: string) => {
   if (!word) {
     return '';
@@ -13,5 +16,7 @@ const getDateToMonthYear = (dateStr: string) => {
 function getDateToISODate(dateStr: string) {
   return new Date(dateStr).toISOString().split('T')[0];
 }
+
+export const filterOffersByCity = (offers: TypeOffer[], city: string): TypeOffer[] => offers.filter((offer) => offer.city.name === city);
 
 export {capitalizeFirstLetter, getDateToMonthYear, getDateToISODate};

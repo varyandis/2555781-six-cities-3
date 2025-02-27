@@ -9,39 +9,34 @@ import Layout from '../layout/layout';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import { TypeOffer } from '../../types/offers';
-import { Provider } from 'react-redux';
-import { store } from '../../store';
 
 type AppScreenProps = {
-  offersCount: number;
   offers: TypeOffer[];
   offersNearby: TypeOffer[];
 }
 
-function App({ offersCount, offers, offersNearby }: AppScreenProps) {
+function App({ offers, offersNearby }: AppScreenProps) {
   const authorizationStatus = AuthorizationStatus.Auth;
 
   return (
-    <Provider store={store}>
-      <HelmetProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path={AppRoute.Main} element={<Layout authorizationStatus={authorizationStatus} />}>
-              <Route index element={<MainScreen offersCount={offersCount} offers={offers} />} />
-              <Route path={AppRoute.Login} element={<LoginScreen />} />
-              <Route path={AppRoute.Favorites} element={
-                <PrivateRoute authorizationStatus={authorizationStatus}>
-                  <FavoritesScreen offers={offers} />
-                </PrivateRoute>
-              }
-              />
-              <Route path={AppRoute.Offer} element={<OfferScreen offersNearby={offersNearby} offers={offers} />} />
-            </Route>
-            <Route path="*" element={<NotFoundScreen />} />
-          </Routes>
-        </BrowserRouter>
-      </HelmetProvider>
-    </Provider>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path={AppRoute.Main} element={<Layout authorizationStatus={authorizationStatus} />}>
+            <Route index element={<MainScreen offers={offers} />} />
+            <Route path={AppRoute.Login} element={<LoginScreen />} />
+            <Route path={AppRoute.Favorites} element={
+              <PrivateRoute authorizationStatus={authorizationStatus}>
+                <FavoritesScreen offers={offers} />
+              </PrivateRoute>
+            }
+            />
+            <Route path={AppRoute.Offer} element={<OfferScreen offersNearby={offersNearby} offers={offers} />} />
+          </Route>
+          <Route path="*" element={<NotFoundScreen />} />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 

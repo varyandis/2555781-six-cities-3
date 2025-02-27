@@ -2,13 +2,13 @@ import { createReducer } from '@reduxjs/toolkit';
 import { cityAction, offersAction } from './action';
 import { TypeOffer } from '../types/offers';
 
-interface AppState {
+type AppState = {
   city: string;
   listOffers: TypeOffer[];
 }
 
 const initialState: AppState = {
-  city: 'Amsterdam',
+  city: '',
   listOffers: [],
 };
 

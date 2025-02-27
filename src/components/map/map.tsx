@@ -2,7 +2,7 @@ import { Icon, Marker, layerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { TypeOffer } from '../../types/offers';
 import { useRef, useEffect } from 'react';
-import useMap from '../../hook/useMap';
+import useMap from '../../hooks/useMap';
 import { TypeCity } from '../../types/offers';
 
 const URL_MARKER_DEFAULT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
@@ -32,6 +32,12 @@ function Map({ selectedCard, offers, city, className }: MapProps) {
   const map = useMap(mapRef, city);
 
   const classNameMap = (className === 'offer') ? 'offer' : 'cities';
+
+  useEffect(() => {
+    if (map) {
+      map.setView([city.location.latitude, city.location.longitude], city.location.zoom);
+    }
+  }, [map, city]);
 
   useEffect(() => {
     if (map) {
