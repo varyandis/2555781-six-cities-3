@@ -7,39 +7,36 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import OfferScreen from '../../pages/offer-screen/offer-screen';
 import Layout from '../layout/layout';
 import PrivateRoute from '../private-route/private-route';
-import {HelmetProvider} from 'react-helmet-async';
+import { HelmetProvider } from 'react-helmet-async';
 import { TypeOffer } from '../../types/offers';
-// import { offers } from '../../mocks/offers';
 
 type AppScreenProps = {
-  offersCount: number;
   offers: TypeOffer[];
   offersNearby: TypeOffer[];
 }
 
-function App({offersCount, offers, offersNearby} : AppScreenProps) {
+function App({ offers, offersNearby }: AppScreenProps) {
   const authorizationStatus = AuthorizationStatus.Auth;
 
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoute.Main} element={<Layout authorizationStatus={authorizationStatus}/>}>
-            <Route index element={<MainScreen offersCount={offersCount} offers={offers}/>} />
+          <Route path={AppRoute.Main} element={<Layout authorizationStatus={authorizationStatus} />}>
+            <Route index element={<MainScreen offers={offers} />} />
             <Route path={AppRoute.Login} element={<LoginScreen />} />
             <Route path={AppRoute.Favorites} element={
               <PrivateRoute authorizationStatus={authorizationStatus}>
-                <FavoritesScreen offers={offers}/>
+                <FavoritesScreen offers={offers} />
               </PrivateRoute>
             }
             />
-            <Route path={AppRoute.Offer} element={<OfferScreen offersNearby={offersNearby} offers={offers}/>} />
+            <Route path={AppRoute.Offer} element={<OfferScreen offersNearby={offersNearby} offers={offers} />} />
           </Route>
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>
-
   );
 }
 

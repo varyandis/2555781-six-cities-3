@@ -1,25 +1,33 @@
 import { Helmet } from 'react-helmet-async';
 import { TypeOffer } from '../../types/offers';
 import OffersList from '../../components/offers-list/offers-list';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Map from '../../components/map/map';
+import CitiesList from '../../components/cities-list/cities-list';
+import { CITIES } from '../../const';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { cityAction } from '../../store/action';
+import { filterOffersByCity } from '../../utils/utils';
+import { TypeCity } from '../../types/offers';
+import { offersAction } from '../../store/action';
 
 type MainScreenProps = {
-  offersCount: number;
   offers: TypeOffer[];
 };
 
-const city = {
-  'name': 'Amsterdam',
-  'location': {
-    'latitude': 52.37454,
-    'longitude': 4.897976,
-    'zoom': 13
-  }
-};
+function MainScreen({ offers }: MainScreenProps): JSX.Element {
 
-function MainScreen({ offersCount, offers }: MainScreenProps): JSX.Element {
   const [selectedCard, setSelectedCard] = useState<TypeOffer | undefined>(undefined);
+  const [selectedCity, setSelectedCity] = useState<TypeCity>(CITIES[0]);
+
+  const dispatch = useAppDispatch();
+  const city = useAppSelector((state) => state.city);
+  const listOffers = useAppSelector((state) => state.listOffers);
+
+  useEffect(() => {
+    const filteredOffers: TypeOffer[] = filterOffersByCity(offers, selectedCity.name);
+    dispatch(offersAction(filteredOffers));
+  }, [city, offers, dispatch, selectedCity.name]);
 
   const handleMouseOver = (id: string) => {
     setSelectedCard(offers.find((offer) => offer.id === id));
@@ -29,6 +37,15 @@ function MainScreen({ offersCount, offers }: MainScreenProps): JSX.Element {
     setSelectedCard(undefined);
   };
 
+  const handleCityChange = (cityName: string) => {
+    const newSelectesCity = CITIES.find((newCity) => newCity.name === cityName);
+    if (newSelectesCity) {
+      setSelectedCity(newSelectesCity);
+      dispatch(cityAction(cityName));
+    }
+  };
+
+
   return (
     <main className="page__main page__main--index">
       <Helmet>
@@ -36,47 +53,14 @@ function MainScreen({ offersCount, offers }: MainScreenProps): JSX.Element {
       </Helmet>
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
-        <section className="locations container">
-          <ul className="locations__list tabs__list">
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Paris</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Cologne</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Brussels</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item tabs__item--active">
-                <span>Amsterdam</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Hamburg</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Dusseldorf</span>
-              </a>
-            </li>
-          </ul>
-        </section>
+        <CitiesList selectedCity={selectedCity.name} handleCityChange={handleCityChange} />
       </div>
       <div className="cities">
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">
-              {offersCount} places to stay in Amsterdam
+              {listOffers.length} places to stay in {city}
             </b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
@@ -105,14 +89,14 @@ function MainScreen({ offersCount, offers }: MainScreenProps): JSX.Element {
               </ul>
             </form>
             <OffersList
-              offers={offers}
+              offers={listOffers}
               cardClassName="cities"
               onMouseOver={handleMouseOver}
               onMouseLeave={handleMouseLeave}
             />
           </section>
           <div className="cities__right-section">
-            <Map selectedCard={selectedCard} offers={offers} city={city} className='cities'/>
+            <Map selectedCard={selectedCard} offers={listOffers} city={selectedCity} className='cities' />
           </div>
         </div>
       </div>
