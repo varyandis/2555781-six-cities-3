@@ -63,3 +63,12 @@ export const CITIES = [
     },
   },
 ] as const;
+
+export const SortType = {
+  POPULAR: 'Popular',
+  PRICE_LOW_TO_HIGH: 'Price: low to high',
+  PRICE_HIGH_TO_LOW: 'Price: high to low',
+  TOP_RATED: 'Top rated first',
+} as const;
+
+type SortType = typeof SortType[keyof typeof SortType];

@@ -1,4 +1,3 @@
-
 import { TypeOffer } from '../types/offers';
 
 const capitalizeFirstLetter = (word: string) => {
@@ -17,6 +16,22 @@ function getDateToISODate(dateStr: string) {
   return new Date(dateStr).toISOString().split('T')[0];
 }
 
-export const filterOffersByCity = (offers: TypeOffer[], city: string): TypeOffer[] => offers.filter((offer) => offer.city.name === city);
+export const filterOffersByCity = (
+  offers: TypeOffer[],
+  city: string
+): TypeOffer[] => offers.filter((offer) => offer.city.name === city);
 
-export {capitalizeFirstLetter, getDateToMonthYear, getDateToISODate};
+const sortOffers = (value: string, offers: TypeOffer[]) => {
+  switch (value) {
+    case 'Price: low to high':
+      return [...offers].sort((a, b) => a.price - b.price);
+    case 'Price: high to low':
+      return [...offers].sort((a, b) => b.price - a.price);
+    case 'Top rated first':
+      return [...offers].sort((a, b) => b.rating - a.rating);
+    default:
+      return offers;
+  }
+};
+
+export { capitalizeFirstLetter, getDateToMonthYear, getDateToISODate, sortOffers };
