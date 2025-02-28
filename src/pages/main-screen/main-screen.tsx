@@ -7,9 +7,11 @@ import CitiesList from '../../components/cities-list/cities-list';
 import { CITIES } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { cityAction } from '../../store/action';
-import { filterOffersByCity } from '../../utils/utils';
+import { filterOffersByCity, sortOffers } from '../../utils/utils';
 import { TypeCity } from '../../types/offers';
 import { offersAction } from '../../store/action';
+import PlacesSorting from '../../components/places-sorting/places-sorting';
+import { SortType } from '../../const';
 
 type MainScreenProps = {
   offers: TypeOffer[];
@@ -17,17 +19,19 @@ type MainScreenProps = {
 
 function MainScreen({ offers }: MainScreenProps): JSX.Element {
 
+  const [selectedSort, setSelectedSort] = useState<string>(SortType.POPULAR);
   const [selectedCard, setSelectedCard] = useState<TypeOffer | undefined>(undefined);
   const [selectedCity, setSelectedCity] = useState<TypeCity>(CITIES[0]);
 
+
   const dispatch = useAppDispatch();
-  const city = useAppSelector((state) => state.city);
   const listOffers = useAppSelector((state) => state.listOffers);
 
   useEffect(() => {
     const filteredOffers: TypeOffer[] = filterOffersByCity(offers, selectedCity.name);
-    dispatch(offersAction(filteredOffers));
-  }, [city, offers, dispatch, selectedCity.name]);
+    const sortedOffers: TypeOffer[] = sortOffers(selectedSort, filteredOffers);
+    dispatch(offersAction(sortedOffers));
+  }, [selectedCity, offers, dispatch, selectedCity.name, selectedSort]);
 
   const handleMouseOver = (id: string) => {
     setSelectedCard(offers.find((offer) => offer.id === id));
@@ -42,9 +46,13 @@ function MainScreen({ offers }: MainScreenProps): JSX.Element {
     if (newSelectesCity) {
       setSelectedCity(newSelectesCity);
       dispatch(cityAction(cityName));
+      setSelectedSort(SortType.POPULAR);
     }
   };
 
+  const handleClickSort = (sort: string) => {
+    setSelectedSort(sort);
+  };
 
   return (
     <main className="page__main page__main--index">
@@ -60,34 +68,9 @@ function MainScreen({ offers }: MainScreenProps): JSX.Element {
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">
-              {listOffers.length} places to stay in {city}
+              {listOffers.length} places to stay in {selectedCity.name}
             </b>
-            <form className="places__sorting" action="#" method="get">
-              <span className="places__sorting-caption">Sort by</span>
-              <span className="places__sorting-type" tabIndex={0}>
-                Popular
-                <svg className="places__sorting-arrow" width={7} height={4}>
-                  <use xlinkHref="#icon-arrow-select" />
-                </svg>
-              </span>
-              <ul className="places__options places__options--custom places__options--opened">
-                <li
-                  className="places__option places__option--active"
-                  tabIndex={0}
-                >
-                  Popular
-                </li>
-                <li className="places__option" tabIndex={0}>
-                  Price: low to high
-                </li>
-                <li className="places__option" tabIndex={0}>
-                  Price: high to low
-                </li>
-                <li className="places__option" tabIndex={0}>
-                  Top rated first
-                </li>
-              </ul>
-            </form>
+            <PlacesSorting sort={handleClickSort} selectedSort={selectedSort} />
             <OffersList
               offers={listOffers}
               cardClassName="cities"
