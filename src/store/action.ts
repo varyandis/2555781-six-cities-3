@@ -5,3 +5,5 @@ export const cityAction = createAction('city/setCity', (city: string) => ({paylo
 
 export const offersAction = createAction('offers/setOffers', (offers: TypeOffer[]) => ({payload: offers}));
 
+export const loadOffers = createAction('offers/loadOffers', (offers: TypeOffer[]) => ({payload: offers}));
+
