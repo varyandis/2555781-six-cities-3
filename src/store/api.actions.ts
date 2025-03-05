@@ -7,6 +7,19 @@ import { TypeOffer } from '../types/offers';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { dropToken, saveToken } from '../services/token';
+import { store } from '.';
+import { TIMEOUT_SHOW_ERROR } from '../const';
+import { setError } from './action';
+
+export const clearErrorAction = createAsyncThunk(
+  'game/clearError',
+  () => {
+    setTimeout(
+      () => store.dispatch(setError(null)),
+      TIMEOUT_SHOW_ERROR,
+    );
+  },
+);
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
