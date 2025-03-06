@@ -1,4 +1,4 @@
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import MainScreen from '../../pages/main-screen/main-screen';
 import FavoritesScreen from '../../pages/favorites-screen/favorites-screen';
@@ -11,6 +11,8 @@ import { HelmetProvider } from 'react-helmet-async';
 import { TypeOffer } from '../../types/offers';
 import { useAppSelector } from '../../hooks';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
 
 type AppScreenProps = {
   offersNearby: TypeOffer[];
@@ -28,7 +30,7 @@ function App({ offersNearby }: AppScreenProps) {
 
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <HistoryRouter history={browserHistory}>
         <Routes>
           <Route path={AppRoute.Main} element={<Layout authorizationStatus={authorizationStatus} />}>
             <Route index element={<MainScreen offers={offers} />} />
@@ -43,7 +45,7 @@ function App({ offersNearby }: AppScreenProps) {
           </Route>
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>
-      </BrowserRouter>
+      </HistoryRouter>
     </HelmetProvider>
   );
 }
