@@ -1,6 +1,6 @@
 import { AppDispatch, State } from '../types/store';
 import { AxiosInstance } from 'axios';
-import { loadOffers, requireAuthorization } from './action';
+import { loadOffers, requireAuthorization, setOffersDataLoadingStatus } from './action';
 import { APIRoute, AuthorizationStatus } from '../const';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { TypeOffer } from '../types/offers';
@@ -28,7 +28,9 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
 }>(
   'data/fetchOffers',
   async (_arg, {dispatch, extra: api}) => {
+    dispatch(setOffersDataLoadingStatus(true));
     const {data} = await api.get<TypeOffer[]>(APIRoute.Offers);
+    dispatch(setOffersDataLoadingStatus(false));
     dispatch(loadOffers(data));
   },
 );
