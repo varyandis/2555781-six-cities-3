@@ -12,6 +12,7 @@ import { TypeCity } from '../../types/offers';
 import { offersAction } from '../../store/action';
 import PlacesSorting from '../../components/places-sorting/places-sorting';
 import { SortType } from '../../const';
+// import { Navigate } from 'react-router-dom';
 
 type MainScreenProps = {
   offers: TypeOffer[];
@@ -53,6 +54,10 @@ function MainScreen({ offers }: MainScreenProps): JSX.Element {
   const handleClickSort = (sort: string) => {
     setSelectedSort(sort);
   };
+
+  // if (offers.length === 0) {
+  //   return
+  // }
 
   return (
     <main className="page__main page__main--index">

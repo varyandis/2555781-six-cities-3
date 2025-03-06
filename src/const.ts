@@ -1,4 +1,7 @@
 
+
+export const TIMEOUT_SHOW_ERROR = 2000;
+
 export const AppRoute = {
   Main: '/',
   Login: '/login',
@@ -72,3 +75,11 @@ export const SortType = {
 } as const;
 
 type SortType = typeof SortType[keyof typeof SortType];
+
+export enum APIRoute {
+  Offers = '/offers',
+  Favorite = '/favorite',
+  Comments = '/comments',
+  Login = 'login',
+  Logout = '/logout',
+}

@@ -9,14 +9,22 @@ import Layout from '../layout/layout';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import { TypeOffer } from '../../types/offers';
+import { useAppSelector } from '../../hooks';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
 type AppScreenProps = {
-  offers: TypeOffer[];
   offersNearby: TypeOffer[];
 }
 
-function App({ offers, offersNearby }: AppScreenProps) {
-  const authorizationStatus = AuthorizationStatus.Auth;
+function App({ offersNearby }: AppScreenProps) {
+  const offers = useAppSelector((state) => state.offers);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
     <HelmetProvider>
