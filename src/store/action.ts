@@ -16,3 +16,7 @@ export const setOffersDataLoadingStatus = createAction<boolean>('data/setOffersD
 
 export const redirectToRoute = createAction<string>('offer/redirectToRoute');
 
+export const setUserLogin = createAction<string>('user/setUserLogin');
+
+export const setUserAvatar = createAction<string>('user/setUserAvatar');
+
