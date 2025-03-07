@@ -34,6 +34,7 @@ const initialState: AppState = {
   userAvatar: '',
 };
 
+
 const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(cityAction, (state, action) => {
