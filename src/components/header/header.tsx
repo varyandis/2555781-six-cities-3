@@ -1,8 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { Link } from 'react-router-dom';
-import { logoutAction } from '../../store/api.actions';
-import { useAppDispatch, useAppSelector } from '../../hooks';
 
 type HeaderProps = {
   authorizationStatus: AuthorizationStatus;
@@ -11,9 +9,6 @@ type HeaderProps = {
 function Header(props: HeaderProps): JSX.Element {
   const { authorizationStatus } = props;
   const { pathname } = useLocation();
-  const userLogin = useAppSelector((state) => state.userLogin);
-  const userAvatar = useAppSelector((state) => state.userAvatar);
-  const dispatch = useAppDispatch();
 
   return (
     <header className="header">
@@ -34,32 +29,21 @@ function Header(props: HeaderProps): JSX.Element {
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  <Link
+                  <a
                     className="header__nav-link header__nav-link--profile"
-                    to={AppRoute.Favorites}
+                    href="#"
                   >
-                    <div className="header__avatar-wrapper user__avatar-wrapper" style={{
-                      backgroundImage: `url(${userAvatar})`,
-                      borderRadius: '50%'
-                    }}
-                    >
-                    </div>
+                    <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                     <span className="header__user-name user__name">
-                      {userLogin}
+                  Oliver.conner@gmail.com
                     </span>
                     <span className="header__favorite-count">3</span>
-                  </Link>
+                  </a>
                 </li>
                 <li className="header__nav-item">
-                  <Link className="header__nav-link"
-                    onClick={(evt) => {
-                      evt.preventDefault();
-                      dispatch(logoutAction());
-                    }}
-                    to='/'
-                  >
+                  <a className="header__nav-link" href="#">
                     <span className="header__signout">Sign out</span>
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </nav>
@@ -68,13 +52,13 @@ function Header(props: HeaderProps): JSX.Element {
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  <Link
+                  <a
                     className="header__nav-link header__nav-link--profile"
-                    to={AppRoute.Login}
+                    href="#"
                   >
                     <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                     <span className="header__login">Sign in</span>
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </nav>
